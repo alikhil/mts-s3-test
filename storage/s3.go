@@ -36,8 +36,9 @@ func InitS3Context(cfg *Config) (*S3Context, error) {
 	}
 	var err error
 	ctx.session, err = session.NewSession(&aws.Config{
-		Endpoint: aws.String(cfg.S3Endpoint),
-		Region:   aws.String(cfg.S3Region),
+		Endpoint:         aws.String(cfg.S3Endpoint),
+		Region:           aws.String(cfg.S3Region),
+		S3ForcePathStyle: aws.Bool(true),
 		Credentials: credentials.NewStaticCredentials(
 			cfg.S3AccessKeyID,
 			cfg.S3SecretAccessKey,
